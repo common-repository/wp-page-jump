@@ -1,0 +1,159 @@
+Introduction
+===================================
+This file contains the installation guide and usage notes for the Page Jump WordPress
+plug-in.
+
+-----------------------------------------------------------------------------------------
+
+Information
+===================================
+Page Jump is a WordPress [http://wordpress.org] plug-in that emulates the "Paginator"
+found at the bottom of the page of Flickr [http://www.flickr.com] photostreams. The
+version number of the plug-in you have downloaded is v1.0.1b.
+
+The small letter "b" at the end of the version number indicates that the plug-in is still
+considered to be "beta" software, meaning it is not considered fully released, but rather
+still being tested, but by many more users than just the original authors. Guess what?
+If you've downloaded and install the plug-in, automatically, you're considered one of our
+beta-testers!
+
+If you notice any bugs in the process of using this software, or even if you see things
+about its behavior that don't seem right to you, please notify me at
+wp-page-jump@charlesstricklin.com and include as much of the following information in
+your e-mail that you can provide:
+
+* A complete description of the bug observed or the change being suggested.
+* Steps to duplicate the bug.
+* The version number of the plug-in being used.
+* The version number of the WordPress software being used.
+* The version number of PHP being used.
+* The version number of MySQL being used.
+
+-----------------------------------------------------------------------------------------
+
+Installation
+===================================
+Step 1.  You've already unzipped the archive containing the PHP plug-in file titled
+         'wp-page-jump.zip' and this documentation file, or you wouldn't be reading
+         this right now.
+
+Step 2.  Upload the file 'wp-page-jump.php' (using the ASCII mode!)into the plug-in
+         directory of the WordPress blog you wish to use it on. This directory is always
+         called 'plugins' and it's always located within a directory called 'wp-content'.
+
+Step 3.  Open your blog's Administration Panel (sometimes called the Dashboard) and click
+         on the link to manage your plug-ins.
+
+Step 4.  Activate the 'Page Jump' plug-in.
+
+Step 5.  Wherever you'd like the page jump indications to appear, within your template
+         at the appropriate spot enter <?php page_jump ( );?> and save the file.
+
+-----------------------------------------------------------------------------------------
+
+Usage
+===================================
+For the page jump to really appear useful, some styling is required. For example, to
+the page jump behave as Flickr does, surround the call to the page jump function with a
+division class, like so:
+
+	<div class="page_jump">
+	<?php page_jump ( );?>
+	</div>
+
+Then, in your theme's stylesheet, add the following styles:
+
+	.page_jump {
+		font: .9em Arial, Helvetica, sans-serif;
+		padding-top: 10px;
+		padding-bottom: 10px;
+		margin: 0px;
+		text-align: center;
+	}
+	
+	.page_jump a, .pageList .this-page {
+		padding: 2px 6px;
+		border: solid 1px #ddd;
+		background: #fff;
+		text-decoration: none;
+	}
+	
+	.page_jump a:visited {
+		padding: 2px 6px;
+		border: solid 1px #ddd;
+		background: #fff;
+		text-decoration: none;
+	}
+	
+	.page_jump .end {
+		padding: 2px 6px;
+		border: solid 2px #ddd;
+		background: #fff;
+	}
+	
+	.page_jump .this-page {
+		padding: 2px 6px;
+		border-color: #999;
+		font-weight: bold;
+		font-size: .9em;
+		vertical-align: top;
+		background: #fff;
+	}
+	
+	.page_jump a:hover {
+		color: #fff;
+		background: #0063DC;
+		border-color: #036;
+		text-decoration: none;
+	}
+
+Note the special CSS styles given to the current page being viewed (.this-page), as well
+as the two end pages being displayed (.end).
+
+These styles are just suggestions, based on Flickr's own "paginator" style. Should you
+come up with your own styles that you believe to be particularly noteworthy, please let
+me know by e-mailing wp-page-jump@charlesstricklin.com.
+
+-----------------------------------------------------------------------------------------
+
+Licensing
+===================================
+Page Jump is released under GNU General Public License:
+
+http://www.opensource.org/licenses/gpl-license.php
+
+-----------------------------------------------------------------------------------------
+
+Version History
+===================================
+07/18/2005	Development begun.
+07/23/2005	1.0b released.
+07/23/2005	1.0.1b released.
+
+1.0b - 07/23/2005
+	Initial beta release
+
+1.0.1b - 07/23/2005
+	Change	Removed CSS and function, making it the responsibility of the user.
+	Change	Removed the index page only restriction.
+	Bug fix	Removed /page/1/ from index page.
+	Bug fix	Added class="end" on beginning and ending pages (unless one of them
+                  is the current page, of course.)
+	Bug fix	No longer counts posts published in the future.
+	Change	Cached output instead of echoing it out.	
+
+-----------------------------------------------------------------------------------------
+
+Credits
+===================================
+Many thanks to:
+
+* my co-author, David House, [http://xmouse.ithium.net] who wrote all of the page
+  display logic.
+
+* Robert Deaton [http://somethingunpredictable.com/] for help determining what page we're
+  on, for figuring out how to discern the number of unique dates, and also catching that
+  DATE() doesn't work on MySQL installs earlier than 4.1.1.
+
+* Mark Jaquith [http://txfx.net] for invaluable help in bug-fixing, usability suggestions
+  and logic streamlining.
